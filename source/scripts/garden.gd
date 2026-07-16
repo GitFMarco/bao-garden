@@ -8,6 +8,8 @@ const CURSOR_HARVEST := preload("res://art/chopsticks.png")
 enum Mode {SEED, WATER, HARVEST}
 var current_mode: Mode = Mode.SEED
 
+var selected_crop: CropData.Type = CropData.Type.CLASSIC
+
 const GRID_COLS := 5
 const GRID_ROWS := 7
 
@@ -17,6 +19,14 @@ const CELL_SCENE: PackedScene = preload("res://scenes/cell.tscn")
 
 
 func _ready() -> void:
+	# Bottoni topbar
+	%MenuButton.pressed.connect(%MenuModal.show)
+	%ShopButton.pressed.connect(%ShopModal.show)
+	%BackpackButton.pressed.connect(%BackpackModal.show)
+	# Tap sul backdrop -> chiude la finestra
+	for modal in [%MenuModal, %ShopModal, %BackpackModal]:
+		modal.get_node("Backdrop").gui_input.connect(_on_modal_backdrop_input.bind(modal))
+
 	# Inizializzo i cuori
 	GameState.hearts_changed.connect(_on_hearts_changed)
 	_on_hearts_changed(GameState.hearts)
@@ -46,9 +56,9 @@ func _save_now() -> void:
 func _on_cell_tapped(cell: Cell) -> void:
 	match current_mode:
 		Mode.SEED:
-			if cell.state == Cell.State.EMPTY and GameState.get_seed_count(CropData.Type.CLASSIC) > 0:
-				GameState.add_seeds(CropData.Type.CLASSIC, -1)
-				cell.crop = CropDatabase.get_crop(CropData.Type.CLASSIC)
+			if cell.state == Cell.State.EMPTY and GameState.get_seed_count(selected_crop) > 0:
+				GameState.add_seeds(selected_crop, -1)
+				cell.crop = CropDatabase.get_crop(selected_crop)
 				cell.set_state(Cell.State.SEED)
 				_save_now()
 		Mode.WATER:
@@ -107,4 +117,8 @@ func _set_mode(mode: Mode) -> void:
 			Input.set_custom_mouse_cursor(CURSOR_HARVEST, Input.CURSOR_ARROW, Vector2(0, 0))
 
 func _update_seed_button() -> void:
-	%SeedCountLabel.text = str(GameState.get_seed_count(CropData.Type.CLASSIC))
+	%SeedCountLabel.text = str(GameState.get_seed_count(selected_crop))
+
+func _on_modal_backdrop_input(event: InputEvent, modal: Control) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		modal.hide()

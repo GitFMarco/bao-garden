@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvtintireipd2"]
+[gd_scene load_steps=19 format=3 uid="uid://bvtintireipd2"]
 
 [ext_resource type="Script" uid="uid://d3txx53ad1trn" path="res://scripts/garden.gd" id="1_t3x5t"]
 [ext_resource type="PackedScene" uid="uid://bbaaaysyur42j" path="res://scenes/garden_background.tscn" id="2_4iwim"]
@@ -6,9 +6,21 @@
 [ext_resource type="Texture2D" uid="uid://cu2naqaneknyx" path="res://art/heart.png" id="4_k83q7"]
 [ext_resource type="Texture2D" uid="uid://cxrkxjqcfxejh" path="res://art/button.png" id="5_1vq1v"]
 [ext_resource type="Texture2D" uid="uid://cmta6xnawxw5u" path="res://art/button-pressed.png" id="5_5pv02"]
+[ext_resource type="Texture2D" uid="uid://ble0s0e2gr16j" path="res://art/menu-button-pressed.png" id="5_8csfy"]
 [ext_resource type="Texture2D" uid="uid://1242gscv3nsb" path="res://art/seed-packet.png" id="5_o5anx"]
+[ext_resource type="Texture2D" uid="uid://uph5plwpkfci" path="res://art/menu-button.png" id="6_dfwg7"]
 [ext_resource type="Texture2D" uid="uid://bql1k171534ay" path="res://art/watering_can.png" id="6_wdstj"]
+[ext_resource type="Texture2D" uid="uid://d4ejts7nahnun" path="res://art/backpack.png" id="7_dfwg7"]
 [ext_resource type="Texture2D" uid="uid://xwh5oh6ofgl8" path="res://art/chopsticks.png" id="7_wdstj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_la7hl"]
+texture = ExtResource("5_8csfy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3txl1"]
+texture = ExtResource("6_dfwg7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v6x8h"]
+texture = ExtResource("7_dfwg7")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wiw1g"]
 texture = ExtResource("5_5pv02")
@@ -49,7 +61,7 @@ columns = 5
 wait_time = 3.0
 autostart = true
 
-[node name="TopBar" type="MarginContainer" parent="."]
+[node name="TopRightBar" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -63,11 +75,11 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TopRightBar"]
 layout_mode = 2
 alignment = 1
 
-[node name="HeartsLabel" type="Label" parent="TopBar/HBoxContainer"]
+[node name="HeartsLabel" type="Label" parent="TopRightBar/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_4iwim")
@@ -76,13 +88,55 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HeartIcon" type="TextureRect" parent="TopBar/HBoxContainer"]
+[node name="HeartIcon" type="TextureRect" parent="TopRightBar/HBoxContainer"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("4_k83q7")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="TopLeftBar" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -195.0
+offset_right = -11.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopLeftBar"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MenuButton" type="Button" parent="TopLeftBar/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxTexture_la7hl")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_la7hl")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3txl1")
+
+[node name="ShopButton" type="Button" parent="TopLeftBar/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+focus_mode = 0
+
+[node name="BackpackButton" type="Button" parent="TopLeftBar/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxTexture_v6x8h")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v6x8h")
+theme_override_styles/normal = SubResource("StyleBoxTexture_v6x8h")
 
 [node name="BottomBar" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -174,5 +228,158 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_k83q7")
 icon = ExtResource("7_wdstj")
 icon_alignment = 1
+
+[node name="BackpackModal" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="BackpackModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="PanelContainer" type="PanelContainer" parent="BackpackModal"]
+custom_minimum_size = Vector2(280, 380)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BackpackModal/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackpackModal/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="BackpackModal/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4iwim")
+theme_override_font_sizes/font_size = 32
+text = "Zaino"
+horizontal_alignment = 1
+
+[node name="ShopModal" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="ShopModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="PanelContainer" type="PanelContainer" parent="ShopModal"]
+custom_minimum_size = Vector2(280, 380)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopModal/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopModal/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ShopModal/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4iwim")
+theme_override_font_sizes/font_size = 32
+text = "Shop"
+horizontal_alignment = 1
+
+[node name="MenuModal" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="MenuModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuModal"]
+custom_minimum_size = Vector2(280, 380)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuModal/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuModal/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MenuModal/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4iwim")
+theme_override_font_sizes/font_size = 32
+text = "Menù"
+horizontal_alignment = 1
 
 [connection signal="timeout" from="AutosaveTimer" to="." method="_on_autosave_timer_timeout"]
