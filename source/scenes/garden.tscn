@@ -1,0 +1,178 @@
+[gd_scene load_steps=13 format=3 uid="uid://bvtintireipd2"]
+
+[ext_resource type="Script" uid="uid://d3txx53ad1trn" path="res://scripts/garden.gd" id="1_t3x5t"]
+[ext_resource type="PackedScene" uid="uid://bbaaaysyur42j" path="res://scenes/garden_background.tscn" id="2_4iwim"]
+[ext_resource type="FontFile" uid="uid://cokkrrpth4jhf" path="res://font/m5x7.ttf" id="3_4iwim"]
+[ext_resource type="Texture2D" uid="uid://cu2naqaneknyx" path="res://art/heart.png" id="4_k83q7"]
+[ext_resource type="Texture2D" uid="uid://cxrkxjqcfxejh" path="res://art/button.png" id="5_1vq1v"]
+[ext_resource type="Texture2D" uid="uid://cmta6xnawxw5u" path="res://art/button-pressed.png" id="5_5pv02"]
+[ext_resource type="Texture2D" uid="uid://1242gscv3nsb" path="res://art/seed-packet.png" id="5_o5anx"]
+[ext_resource type="Texture2D" uid="uid://bql1k171534ay" path="res://art/watering_can.png" id="6_wdstj"]
+[ext_resource type="Texture2D" uid="uid://xwh5oh6ofgl8" path="res://art/chopsticks.png" id="7_wdstj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wiw1g"]
+texture = ExtResource("5_5pv02")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5pv02"]
+texture = ExtResource("5_1vq1v")
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_k83q7"]
+
+[node name="Garden" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t3x5t")
+
+[node name="GardenBackground" parent="." instance=ExtResource("2_4iwim")]
+layout_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Grid" type="GridContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 5
+
+[node name="AutosaveTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="TopBar" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 103.0
+offset_right = 195.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+alignment = 1
+
+[node name="HeartsLabel" type="Label" parent="TopBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4iwim")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeartIcon" type="TextureRect" parent="TopBar/HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_k83q7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BottomBar" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar"]
+layout_mode = 2
+theme_override_constants/separation = 43
+
+[node name="SeedButton" type="Button" parent="BottomBar/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_constants/icon_max_width = 32
+theme_override_fonts/font = ExtResource("3_4iwim")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxTexture_wiw1g")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wiw1g")
+theme_override_styles/normal = SubResource("StyleBoxTexture_5pv02")
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_k83q7")
+icon = ExtResource("5_o5anx")
+icon_alignment = 1
+
+[node name="SeedCountLabel" type="Label" parent="BottomBar/HBoxContainer/SeedButton"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -25.0
+offset_right = -5.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_4iwim")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="WaterButton" type="Button" parent="BottomBar/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("3_4iwim")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxTexture_wiw1g")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wiw1g")
+theme_override_styles/normal = SubResource("StyleBoxTexture_5pv02")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_k83q7")
+icon = ExtResource("6_wdstj")
+icon_alignment = 1
+
+[node name="HarvestButton" type="Button" parent="BottomBar/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("3_4iwim")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxTexture_wiw1g")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wiw1g")
+theme_override_styles/normal = SubResource("StyleBoxTexture_5pv02")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_k83q7")
+icon = ExtResource("7_wdstj")
+icon_alignment = 1
+
+[connection signal="timeout" from="AutosaveTimer" to="." method="_on_autosave_timer_timeout"]

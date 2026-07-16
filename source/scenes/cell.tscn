@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://6dgp5thm1b78"]
+
+[ext_resource type="Script" uid="uid://dmna1h15obker" path="res://scripts/cell.gd" id="1_rd428"]
+[ext_resource type="Texture2D" uid="uid://csrskvchmtp6r" path="res://art/terrain.png" id="2_8ypbm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0s7o3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nm02e"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ypbm"]
+
+[node name="Cell" type="Button"]
+custom_minimum_size = Vector2(64, 64)
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxTexture_0s7o3")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nm02e")
+theme_override_styles/normal = SubResource("StyleBoxTexture_8ypbm")
+script = ExtResource("1_rd428")
+
+[node name="Soil" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_8ypbm")
+expand_mode = 1
+
+[node name="Plant" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1

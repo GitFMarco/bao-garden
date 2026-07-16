@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CropData" load_steps=4 format=3 uid="uid://bwn3wyc81yfpf"]
+
+[ext_resource type="Script" uid="uid://cv38vowfmg4f" path="res://data/crop_data.gd" id="1_l8efd"]
+[ext_resource type="Texture2D" uid="uid://dl75tb24q0gcx" path="res://art/bao/classic-mature.png" id="2_vkd38"]
+[ext_resource type="Texture2D" uid="uid://cryxf8iy02ksc" path="res://art/bao/classic-sprout.png" id="3_nitp8"]
+
+[resource]
+script = ExtResource("1_l8efd")
+type = 0
+display_name = "Classic"
+grow_time = 10.0
+heart_reward = 1
+unlock_cost = 0
+starts_unlocked = true
+sprite_sprout = ExtResource("3_nitp8")
+sprite_mature = ExtResource("2_vkd38")
+metadata/_custom_type_script = "uid://cv38vowfmg4f"

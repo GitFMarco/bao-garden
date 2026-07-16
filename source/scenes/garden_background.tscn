@@ -1,0 +1,220 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbaaaysyur42j"]
+
+[ext_resource type="Texture2D" uid="uid://bg5vvsa42awpx" path="res://art/grass.png" id="1_b2h4r"]
+[ext_resource type="Texture2D" uid="uid://d4idu013txbbd" path="res://art/stone.png" id="2_3x2ij"]
+[ext_resource type="Texture2D" uid="uid://7l0ff0pa7ruv" path="res://art/bush.png" id="2_7oqhg"]
+[ext_resource type="Texture2D" uid="uid://mwuco6rimb51" path="res://art/poppy.png" id="4_by77q"]
+[ext_resource type="Texture2D" uid="uid://cp4043daqy4k2" path="res://art/daisy.png" id="5_u3n5p"]
+
+[node name="GardenBackground" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Grass" type="TextureRect" parent="."]
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_b2h4r")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Stone" type="Node" parent="."]
+
+[node name="Stone1" type="TextureRect" parent="Stone"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 91.0
+offset_top = 273.0
+offset_right = 131.0
+offset_bottom = 313.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3x2ij")
+
+[node name="Stone2" type="TextureRect" parent="Stone"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.0
+offset_top = -316.0
+offset_right = -73.0
+offset_bottom = -276.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3x2ij")
+
+[node name="Poppy" type="Node" parent="."]
+
+[node name="Poppy1" type="TextureRect" parent="Poppy"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 58.0
+offset_top = 271.0
+offset_right = 98.0
+offset_bottom = 311.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_by77q")
+
+[node name="Poppy2" type="TextureRect" parent="Poppy"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 45.0
+offset_top = 275.0
+offset_right = 85.0
+offset_bottom = 315.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_by77q")
+
+[node name="Poppy3" type="TextureRect" parent="Poppy"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 55.0
+offset_top = 282.0
+offset_right = 95.0
+offset_bottom = 322.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_by77q")
+
+[node name="Poppy4" type="TextureRect" parent="Poppy"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 44.0
+offset_top = 290.0
+offset_right = 84.0
+offset_bottom = 330.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_by77q")
+
+[node name="Poppy5" type="TextureRect" parent="Poppy"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 88.0
+offset_top = -374.0
+offset_right = 128.0
+offset_bottom = -334.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_by77q")
+
+[node name="Poppy6" type="TextureRect" parent="Poppy"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 93.0
+offset_top = -361.0
+offset_right = 133.0
+offset_bottom = -321.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_by77q")
+
+[node name="Daisy" type="Node" parent="."]
+
+[node name="Daisy1" type="TextureRect" parent="Daisy"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = 278.0
+offset_right = -29.0
+offset_bottom = 318.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_u3n5p")
+
+[node name="Daisy2" type="TextureRect" parent="Daisy"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -333.0
+offset_right = -28.0
+offset_bottom = -293.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_u3n5p")
+
+[node name="Daisy3" type="TextureRect" parent="Daisy"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -334.0
+offset_right = -10.0
+offset_bottom = -294.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_u3n5p")
+
+[node name="Daisy4" type="TextureRect" parent="Daisy"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -324.0
+offset_right = -14.0
+offset_bottom = -284.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_u3n5p")
+
+[node name="Bush" type="TextureRect" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 107.0
+offset_top = 265.0
+offset_right = 147.0
+offset_bottom = 305.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("2_7oqhg")

@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://dwpxkxi38p034"]
+
+[ext_resource type="PackedScene" uid="uid://bbaaaysyur42j" path="res://scenes/garden_background.tscn" id="1_rtw2f"]
+[ext_resource type="FontFile" uid="uid://cokkrrpth4jhf" path="res://font/m5x7.ttf" id="2_oa1go"]
+[ext_resource type="Texture2D" uid="uid://cmta6xnawxw5u" path="res://art/button-pressed.png" id="3_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://cxrkxjqcfxejh" path="res://art/button.png" id="4_jk1qb"]
+[ext_resource type="Script" uid="uid://ct081hc5atx6y" path="res://scripts/new_game_button.gd" id="5_5dd4i"]
+[ext_resource type="Script" uid="uid://0e15oqq0k4fh" path="res://scripts/exit_game_button.gd" id="6_lgwnu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_826wr"]
+texture = ExtResource("3_tbmy8")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ucygd"]
+texture = ExtResource("4_jk1qb")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GardenBackground" parent="." instance=ExtResource("1_rtw2f")]
+layout_mode = 1
+
+[node name="NewGameButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.5
+offset_top = 45.5
+offset_right = 148.5
+offset_bottom = 110.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.956863, 0.8, 0.631373, 1)
+theme_override_colors/font_color = Color(0.278431, 0.176471, 0.235294, 1)
+theme_override_colors/font_pressed_color = Color(0.956863, 0.8, 0.631373, 1)
+theme_override_fonts/font = ExtResource("2_oa1go")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxTexture_826wr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_826wr")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ucygd")
+text = "Nuova partita"
+script = ExtResource("5_5dd4i")
+
+[node name="ExitGameButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.5
+offset_top = 125.5
+offset_right = 148.5
+offset_bottom = 190.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.956863, 0.8, 0.631373, 1)
+theme_override_colors/font_color = Color(0.278431, 0.176471, 0.235294, 1)
+theme_override_colors/font_pressed_color = Color(0.956863, 0.8, 0.631373, 1)
+theme_override_fonts/font = ExtResource("2_oa1go")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxTexture_826wr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_826wr")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ucygd")
+text = "Esci"
+script = ExtResource("6_lgwnu")
+
+[connection signal="button_up" from="NewGameButton" to="NewGameButton" method="_on_button_up"]
+[connection signal="button_up" from="ExitGameButton" to="ExitGameButton" method="_on_button_up"]

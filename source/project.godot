@@ -1,0 +1,36 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Bao Garden"
+run/main_scene="uid://dwpxkxi38p034"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+config/icon="uid://bcyfmufhw7dbj"
+
+[autoload]
+
+GameState="*res://autoload/game_state.gd"
+CropDatabase="*res://autoload/crop_database.gd"
+
+[display]
+
+window/size/viewport_width=390
+window/size/viewport_height=844
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
+mouse_cursor/custom_image="uid://xwh5oh6ofgl8"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

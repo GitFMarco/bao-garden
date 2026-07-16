@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CropData" load_steps=2 format=3 uid="uid://dsf28d2n07eis"]
+
+[ext_resource type="Script" uid="uid://cv38vowfmg4f" path="res://data/crop_data.gd" id="1_bn3k2"]
+
+[resource]
+script = ExtResource("1_bn3k2")
+type = 1
+display_name = "Heart"
+grow_time = 20.0
+heart_reward = 3
+unlock_cost = 50
+starts_unlocked = false
+metadata/_custom_type_script = "uid://cv38vowfmg4f"

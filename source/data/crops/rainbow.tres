@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CropData" load_steps=2 format=3 uid="uid://btdjb23kreyty"]
+
+[ext_resource type="Script" uid="uid://cv38vowfmg4f" path="res://data/crop_data.gd" id="1_6gbnv"]
+
+[resource]
+script = ExtResource("1_6gbnv")
+type = 5
+display_name = "Rainbow"
+grow_time = 90.0
+heart_reward = 20
+unlock_cost = 1500
+starts_unlocked = false
+metadata/_custom_type_script = "uid://cv38vowfmg4f"
