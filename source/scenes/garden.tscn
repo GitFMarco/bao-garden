@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bvtintireipd2"]
+[gd_scene load_steps=38 format=3 uid="uid://bvtintireipd2"]
 
 [ext_resource type="Script" uid="uid://d3txx53ad1trn" path="res://scripts/garden.gd" id="1_t3x5t"]
 [ext_resource type="PackedScene" uid="uid://bbaaaysyur42j" path="res://scenes/garden_background.tscn" id="2_4iwim"]
@@ -107,6 +107,12 @@ VScrollBar/styles/grabber = SubResource("StyleBoxTexture_ricac")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_d0o5p")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_s5y3a")
 VScrollBar/styles/scroll = SubResource("StyleBoxTexture_6x48w")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wuoq8"]
+texture = ExtResource("5_5pv02")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o0dgr"]
+texture = ExtResource("5_1vq1v")
 
 [node name="Garden" type="Control"]
 layout_mode = 3
@@ -481,5 +487,123 @@ theme_override_fonts/font = ExtResource("3_4iwim")
 theme_override_font_sizes/font_size = 32
 text = "Menù"
 horizontal_alignment = 1
+
+[node name="DeleteSaveButton" type="Button" parent="MenuModal/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_4iwim")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxTexture_wuoq8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wuoq8")
+theme_override_styles/normal = SubResource("StyleBoxTexture_o0dgr")
+text = "Resetta salvataggio"
+
+[node name="ConfirmModal" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="ConfirmModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="PanelContainer" type="PanelContainer" parent="ConfirmModal"]
+custom_minimum_size = Vector2(280, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -100.0
+offset_right = 140.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_f5kbm")
+
+[node name="MarginContainer" type="MarginContainer" parent="ConfirmModal/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConfirmModal/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ConfirmModal/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_4iwim")
+theme_override_font_sizes/font_size = 32
+text = "Sei sicuro?"
+horizontal_alignment = 1
+
+[node name="Content" type="Label" parent="ConfirmModal/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_4iwim")
+theme_override_font_sizes/font_size = 24
+text = "Perderai per sempre (tanto tempo) i tuoi progressi."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Spacer" type="Control" parent="ConfirmModal/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ConfirmModal/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 15
+
+[node name="CancelResetButton" type="Button" parent="ConfirmModal/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_4iwim")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxTexture_wuoq8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wuoq8")
+theme_override_styles/normal = SubResource("StyleBoxTexture_o0dgr")
+text = "Annulla"
+
+[node name="ConfirmResetButton" type="Button" parent="ConfirmModal/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_4iwim")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxTexture_wuoq8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wuoq8")
+theme_override_styles/normal = SubResource("StyleBoxTexture_o0dgr")
+text = "Si, confermo"
 
 [connection signal="timeout" from="AutosaveTimer" to="." method="_on_autosave_timer_timeout"]

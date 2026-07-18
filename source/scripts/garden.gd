@@ -23,8 +23,11 @@ func _ready() -> void:
 	%MenuButton.pressed.connect(%MenuModal.show)
 	%ShopButton.pressed.connect(%ShopModal.show)
 	%BackpackButton.pressed.connect(_open_backpack)
+	%DeleteSaveButton.pressed.connect(%ConfirmModal.show)
+	%CancelResetButton.pressed.connect(%ConfirmModal.hide)
+	%ConfirmResetButton.pressed.connect(_on_reset_confirmed)
 	# Tap sul backdrop -> chiude la finestra
-	for modal in [%MenuModal, %ShopModal, %BackpackModal]:
+	for modal in [%MenuModal, %ShopModal, %BackpackModal, %ConfirmModal]:
 		modal.get_node("Backdrop").gui_input.connect(_on_modal_backdrop_input.bind(modal))
 
 	# Inizializzo i cuori
@@ -149,3 +152,7 @@ func _on_crop_selected(type: CropData.Type) -> void:
 	selected_crop = type
 	_update_seed_button()
 	%BackpackModal.hide()
+	
+func _on_reset_confirmed() -> void:
+	GameState.delete_save()
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

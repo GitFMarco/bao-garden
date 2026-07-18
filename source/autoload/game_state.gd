@@ -49,6 +49,13 @@ func load_game() -> void:
 		seeds = {}
 		for key in loaded_seeds:
 			seeds[int(key)] = int(loaded_seeds[key])
+			
+func delete_save() -> void:
+	DirAccess.remove_absolute(SAVE_PATH)
+	hearts = 0
+	seeds = {CropData.Type.CLASSIC: 5}
+	seeds_changed.emit()
+	grid_data = []
 	
 func get_seed_count(type: CropData.Type) -> int:
 	return int(seeds.get(type, 0))
