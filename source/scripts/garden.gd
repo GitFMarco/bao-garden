@@ -22,7 +22,7 @@ func _ready() -> void:
 	# Bottoni topbar
 	%MenuButton.pressed.connect(%MenuModal.show)
 	%ShopButton.pressed.connect(%ShopModal.show)
-	%BackpackButton.pressed.connect(%BackpackModal.show)
+	%BackpackButton.pressed.connect(_open_backpack)
 	# Tap sul backdrop -> chiude la finestra
 	for modal in [%MenuModal, %ShopModal, %BackpackModal]:
 		modal.get_node("Backdrop").gui_input.connect(_on_modal_backdrop_input.bind(modal))
@@ -122,3 +122,29 @@ func _update_seed_button() -> void:
 func _on_modal_backdrop_input(event: InputEvent, modal: Control) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		modal.hide()
+		
+func _open_backpack() -> void:
+	_populate_backpack()
+	%BackpackModal.show()
+	
+func _populate_backpack() -> void:
+	# Svuota la lista dalla volta precedente
+	for child in %CropList.get_children():
+		child.queue_free()
+		
+	for crop in CropDatabase.get_all_crops():
+		var row := Button.new()
+		if crop.starts_unlocked:
+			row.text = "%s  x%d" % [crop.display_name, GameState.get_seed_count(crop.type)]
+			row.pressed.connect(_on_crop_selected.bind(crop.type))
+		else:
+			row.text = crop.display_name
+			row.disabled = true
+		row.custom_minimum_size.y = 48
+		row.focus_mode = Control.FOCUS_NONE
+		%CropList.add_child(row)
+		
+func _on_crop_selected(type: CropData.Type) -> void:
+	selected_crop = type
+	_update_seed_button()
+	%BackpackModal.hide()

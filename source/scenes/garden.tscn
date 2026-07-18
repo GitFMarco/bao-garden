@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bvtintireipd2"]
+[gd_scene load_steps=36 format=3 uid="uid://bvtintireipd2"]
 
 [ext_resource type="Script" uid="uid://d3txx53ad1trn" path="res://scripts/garden.gd" id="1_t3x5t"]
 [ext_resource type="PackedScene" uid="uid://bbaaaysyur42j" path="res://scenes/garden_background.tscn" id="2_4iwim"]
@@ -12,6 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://bql1k171534ay" path="res://art/watering_can.png" id="6_wdstj"]
 [ext_resource type="Texture2D" uid="uid://d4ejts7nahnun" path="res://art/backpack.png" id="7_dfwg7"]
 [ext_resource type="Texture2D" uid="uid://xwh5oh6ofgl8" path="res://art/chopsticks.png" id="7_wdstj"]
+[ext_resource type="Texture2D" uid="uid://dayjq3q5ject5" path="res://art/window.png" id="13_la7hl"]
+[ext_resource type="Texture2D" uid="uid://dqyd5mcpxsstg" path="res://art/backpack-crop-button-disabled.png" id="14_f5kbm"]
+[ext_resource type="Texture2D" uid="uid://djy8aljljdsrn" path="res://art/backpack-crop-button-pressed.png" id="15_1diec"]
+[ext_resource type="Texture2D" uid="uid://8mr5sa1jkavs" path="res://art/backpack-crop-button.png" id="16_6x48w"]
+[ext_resource type="Texture2D" uid="uid://bhg3qtsxcuir7" path="res://art/scrollbar-track.png" id="17_1diec"]
+[ext_resource type="Texture2D" uid="uid://c6y8qild7ahnr" path="res://art/scrollbar-grabber.png" id="17_r88j4"]
+[ext_resource type="Texture2D" uid="uid://bipbwq2pb4lrx" path="res://art/scrollbar-grabber-pressed.png" id="18_j2bb5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_la7hl"]
 texture = ExtResource("5_8csfy")
@@ -29,6 +36,77 @@ texture = ExtResource("5_5pv02")
 texture = ExtResource("5_1vq1v")
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_k83q7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f5kbm"]
+texture = ExtResource("13_la7hl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r88j4"]
+texture = ExtResource("14_f5kbm")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j2bb5"]
+texture = ExtResource("15_1diec")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_21fhi"]
+texture = ExtResource("16_6x48w")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_js7m7"]
+texture = ExtResource("15_1diec")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ricac"]
+texture = ExtResource("17_r88j4")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d0o5p"]
+texture = ExtResource("17_r88j4")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s5y3a"]
+texture = ExtResource("18_j2bb5")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6x48w"]
+texture = ExtResource("17_1diec")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="Theme" id="Theme_ricac"]
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("3_4iwim")
+Button/styles/disabled = SubResource("StyleBoxTexture_r88j4")
+Button/styles/hover = SubResource("StyleBoxTexture_j2bb5")
+Button/styles/normal = SubResource("StyleBoxTexture_21fhi")
+Button/styles/pressed = SubResource("StyleBoxTexture_js7m7")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_ricac")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_d0o5p")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_s5y3a")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_6x48w")
 
 [node name="Garden" type="Control"]
 layout_mode = 3
@@ -231,7 +309,6 @@ icon_alignment = 1
 
 [node name="BackpackModal" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -262,6 +339,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_f5kbm")
 
 [node name="MarginContainer" type="MarginContainer" parent="BackpackModal/PanelContainer"]
 layout_mode = 2
@@ -275,10 +353,24 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="BackpackModal/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("3_4iwim")
 theme_override_font_sizes/font_size = 32
 text = "Zaino"
 horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BackpackModal/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 299)
+layout_mode = 2
+theme = SubResource("Theme_ricac")
+horizontal_scroll_mode = 0
+
+[node name="CropList" type="VBoxContainer" parent="BackpackModal/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
 
 [node name="ShopModal" type="Control" parent="."]
 unique_name_in_owner = true
@@ -313,6 +405,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_f5kbm")
 
 [node name="MarginContainer" type="MarginContainer" parent="ShopModal/PanelContainer"]
 layout_mode = 2
@@ -326,6 +419,8 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="ShopModal/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("3_4iwim")
 theme_override_font_sizes/font_size = 32
 text = "Shop"
@@ -364,6 +459,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_f5kbm")
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuModal/PanelContainer"]
 layout_mode = 2
@@ -377,6 +473,8 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="MenuModal/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("3_4iwim")
 theme_override_font_sizes/font_size = 32
 text = "Menù"
