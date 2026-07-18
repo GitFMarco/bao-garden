@@ -142,6 +142,7 @@ func _populate_backpack() -> void:
 			row.disabled = true
 		row.custom_minimum_size.y = 48
 		row.focus_mode = Control.FOCUS_NONE
+		row.mouse_filter = Control.MOUSE_FILTER_PASS
 		%CropList.add_child(row)
 		
 func _on_crop_selected(type: CropData.Type) -> void:
