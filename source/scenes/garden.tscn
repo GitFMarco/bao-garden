@@ -366,7 +366,7 @@ custom_minimum_size = Vector2(0, 299)
 layout_mode = 2
 theme = SubResource("Theme_ricac")
 horizontal_scroll_mode = 0
-scroll_deadzone = 10
+scroll_deadzone = 5
 
 [node name="CropList" type="VBoxContainer" parent="BackpackModal/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
