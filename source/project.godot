@@ -21,6 +21,7 @@ config/icon="uid://bcyfmufhw7dbj"
 
 GameState="*res://autoload/game_state.gd"
 CropDatabase="*res://autoload/crop_database.gd"
+AudioManager="*res://autoload/audio_manager.gd"
 
 [display]
 

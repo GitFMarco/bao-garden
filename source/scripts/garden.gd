@@ -63,10 +63,12 @@ func _on_cell_tapped(cell: Cell) -> void:
 				GameState.add_seeds(selected_crop, -1)
 				cell.crop = CropDatabase.get_crop(selected_crop)
 				cell.set_state(Cell.State.SEED)
+				AudioManager.play_seed()
 				_save_now()
 		Mode.WATER:
 			if cell.state == Cell.State.SEED:
 				cell.set_state(Cell.State.WATERED)
+				AudioManager.play_water()
 				_save_now()
 		Mode.HARVEST:
 			if cell.state == Cell.State.MATURE:
@@ -74,8 +76,8 @@ func _on_cell_tapped(cell: Cell) -> void:
 				GameState.add_seeds(cell.crop.type, 2)
 				cell.crop = null
 				cell.set_state(Cell.State.EMPTY)
+				AudioManager.play_harvest()
 				_save_now()
-				print("Cuori totali: ", GameState.hearts)
 				
 func get_grid_data() -> Array:
 	"""Celle -> Dati"""
