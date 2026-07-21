@@ -21,11 +21,11 @@ const CELL_SCENE: PackedScene = preload("res://scenes/cell.tscn")
 func _ready() -> void:
 	# Bottoni topbar
 	%MenuButton.pressed.connect(%MenuModal.show)
-	%ShopButton.pressed.connect(%ShopModal.show)
 	%BackpackButton.pressed.connect(_open_backpack)
 	%DeleteSaveButton.pressed.connect(%ConfirmModal.show)
 	%CancelResetButton.pressed.connect(%ConfirmModal.hide)
 	%ConfirmResetButton.pressed.connect(_on_reset_confirmed)
+	%ShopButton.pressed.connect(_open_shop)
 	# Tap sul backdrop -> chiude la finestra
 	for modal in [%MenuModal, %ShopModal, %BackpackModal, %ConfirmModal]:
 		modal.get_node("Backdrop").gui_input.connect(_on_modal_backdrop_input.bind(modal))
@@ -139,8 +139,9 @@ func _populate_backpack() -> void:
 		
 	for crop in CropDatabase.get_all_crops():
 		var row := Button.new()
-		if crop.starts_unlocked:
+		if GameState.is_unlocked(crop.type):
 			row.text = "%s  x%d" % [crop.display_name, GameState.get_seed_count(crop.type)]
+			row.icon = crop.sprite_icon
 			row.pressed.connect(_on_crop_selected.bind(crop.type))
 		else:
 			row.text = crop.display_name
@@ -152,9 +153,47 @@ func _populate_backpack() -> void:
 		
 func _on_crop_selected(type: CropData.Type) -> void:
 	selected_crop = type
+	# Simulo la pressione del bottone dei semi
+	_set_mode(Mode.SEED)
+	%SeedButton.set_pressed_no_signal(true)
 	_update_seed_button()
 	%BackpackModal.hide()
 	
 func _on_reset_confirmed() -> void:
 	GameState.delete_save()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	
+func _open_shop() -> void:
+	_populate_shop()
+	%ShopModal.show()
+	
+func _populate_shop() -> void:
+	# Prima svuoto tutto e lo ricompongo ogni volta
+	for child in %ShopList.get_children():
+		child.queue_free()
+	
+	for crop in CropDatabase.get_all_crops():
+		if GameState.is_unlocked(crop.type):
+			continue
+		var row := Button.new()
+		row.text = "%s  -  %d cuori" % [crop.display_name, crop.unlock_cost]
+		row.icon = crop.sprite_icon
+		row.custom_minimum_size.y = 48
+		row.focus_mode = Control.FOCUS_NONE
+		row.mouse_filter = Control.MOUSE_FILTER_PASS
+		var can_afford := GameState.hearts >= crop.unlock_cost
+		row.disabled = not can_afford
+		if can_afford:
+			row.pressed.connect(_on_buy_crop.bind(crop.type))
+		%ShopList.add_child(row)
+		
+func _on_buy_crop(type: CropData.Type) -> void:
+	var crop := CropDatabase.get_crop(type)
+	if GameState.hearts < crop.unlock_cost:
+		# In teoria non dovrebbe mai accadere perchè il bottone è disabilitato... ma non si sa mai
+		return
+	GameState.hearts -= crop.unlock_cost
+	GameState.unlock_crop(type)
+	GameState.add_seeds(type, 1)
+	_save_now()
+	_populate_shop()

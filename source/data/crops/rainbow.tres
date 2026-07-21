@@ -1,6 +1,9 @@
-[gd_resource type="Resource" script_class="CropData" load_steps=2 format=3 uid="uid://btdjb23kreyty"]
+[gd_resource type="Resource" script_class="CropData" load_steps=5 format=3 uid="uid://btdjb23kreyty"]
 
 [ext_resource type="Script" uid="uid://cv38vowfmg4f" path="res://data/crop_data.gd" id="1_6gbnv"]
+[ext_resource type="Texture2D" uid="uid://ptl21towfjg8" path="res://art/bao/rainbow-mature.png" id="2_ami7u"]
+[ext_resource type="Texture2D" uid="uid://ddy6dilohmky8" path="res://art/bao/rainbow-icon.png" id="2_mss8t"]
+[ext_resource type="Texture2D" uid="uid://bx3ygboplupn1" path="res://art/bao/rainbow-sprout.png" id="3_mss8t"]
 
 [resource]
 script = ExtResource("1_6gbnv")
@@ -10,4 +13,7 @@ grow_time = 90.0
 heart_reward = 20
 unlock_cost = 1500
 starts_unlocked = false
+sprite_sprout = ExtResource("3_mss8t")
+sprite_mature = ExtResource("2_ami7u")
+sprite_icon = ExtResource("2_mss8t")
 metadata/_custom_type_script = "uid://cv38vowfmg4f"

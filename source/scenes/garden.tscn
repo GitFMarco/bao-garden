@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bvtintireipd2"]
+[gd_scene load_steps=40 format=3 uid="uid://bvtintireipd2"]
 
 [ext_resource type="Script" uid="uid://d3txx53ad1trn" path="res://scripts/garden.gd" id="1_t3x5t"]
 [ext_resource type="PackedScene" uid="uid://bbaaaysyur42j" path="res://scenes/garden_background.tscn" id="2_4iwim"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://uph5plwpkfci" path="res://art/menu-button.png" id="6_dfwg7"]
 [ext_resource type="Texture2D" uid="uid://bql1k171534ay" path="res://art/watering_can.png" id="6_wdstj"]
 [ext_resource type="Texture2D" uid="uid://d4ejts7nahnun" path="res://art/backpack.png" id="7_dfwg7"]
+[ext_resource type="Texture2D" uid="uid://dsl1w7sersgyg" path="res://art/shop-button.png" id="7_j2bb5"]
 [ext_resource type="Texture2D" uid="uid://xwh5oh6ofgl8" path="res://art/chopsticks.png" id="7_wdstj"]
 [ext_resource type="Texture2D" uid="uid://dayjq3q5ject5" path="res://art/window.png" id="13_la7hl"]
 [ext_resource type="Texture2D" uid="uid://dqyd5mcpxsstg" path="res://art/backpack-crop-button-disabled.png" id="14_f5kbm"]
@@ -25,6 +26,9 @@ texture = ExtResource("5_8csfy")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3txl1"]
 texture = ExtResource("6_dfwg7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eqdcu"]
+texture = ExtResource("7_j2bb5")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v6x8h"]
 texture = ExtResource("7_dfwg7")
@@ -110,9 +114,17 @@ VScrollBar/styles/scroll = SubResource("StyleBoxTexture_6x48w")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wuoq8"]
 texture = ExtResource("5_5pv02")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o0dgr"]
 texture = ExtResource("5_1vq1v")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
 
 [node name="Garden" type="Control"]
 layout_mode = 3
@@ -212,6 +224,9 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxTexture_eqdcu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_eqdcu")
+theme_override_styles/normal = SubResource("StyleBoxTexture_eqdcu")
 
 [node name="BackpackButton" type="Button" parent="TopLeftBar/HBoxContainer"]
 unique_name_in_owner = true
@@ -433,6 +448,18 @@ theme_override_fonts/font = ExtResource("3_4iwim")
 theme_override_font_sizes/font_size = 32
 text = "Shop"
 horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ShopModal/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 299)
+layout_mode = 2
+theme = SubResource("Theme_ricac")
+horizontal_scroll_mode = 0
+
+[node name="ShopList" type="VBoxContainer" parent="ShopModal/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
 
 [node name="MenuModal" type="Control" parent="."]
 unique_name_in_owner = true

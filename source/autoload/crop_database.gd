@@ -18,12 +18,9 @@ func _ready() -> void:
 	for path in _CROP_PATHS:
 		var crop: CropData = load(path)
 		_crops[crop.type] = crop
-	print("CropDatabase: caricati %d crop" % _crops.size())
-
 
 func get_crop(type: CropData.Type) -> CropData:
 	return _crops[type]
-
 
 func get_all_crops() -> Array[CropData]:
 	var result: Array[CropData] = []

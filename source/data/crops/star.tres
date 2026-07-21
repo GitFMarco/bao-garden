@@ -1,6 +1,9 @@
-[gd_resource type="Resource" script_class="CropData" load_steps=2 format=3 uid="uid://bdte5bmid8x10"]
+[gd_resource type="Resource" script_class="CropData" load_steps=5 format=3 uid="uid://bdte5bmid8x10"]
 
 [ext_resource type="Script" uid="uid://cv38vowfmg4f" path="res://data/crop_data.gd" id="1_pylr8"]
+[ext_resource type="Texture2D" uid="uid://chvmt6pqcnfx3" path="res://art/bao/star-icon.png" id="2_2cn8k"]
+[ext_resource type="Texture2D" uid="uid://qu8i3yl4vryp" path="res://art/bao/star-mature.png" id="2_us5l0"]
+[ext_resource type="Texture2D" uid="uid://bu46mkqyy5nat" path="res://art/bao/star-sprout.png" id="3_2cn8k"]
 
 [resource]
 script = ExtResource("1_pylr8")
@@ -10,4 +13,7 @@ grow_time = 60.0
 heart_reward = 12
 unlock_cost = 800
 starts_unlocked = false
+sprite_sprout = ExtResource("3_2cn8k")
+sprite_mature = ExtResource("2_us5l0")
+sprite_icon = ExtResource("2_2cn8k")
 metadata/_custom_type_script = "uid://cv38vowfmg4f"

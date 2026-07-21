@@ -26,3 +26,5 @@ enum Type {CLASSIC, HEART, STRAWBERRY, CAT, STAR, RAINBOW}
 @export var sprite_sprout: Texture2D
 # Sprite del bao maturo
 @export var sprite_mature: Texture2D
+# Sprite icona (per bottoni, shop, ecc...)
+@export var sprite_icon: Texture2D
