@@ -9,9 +9,9 @@
 script = ExtResource("1_b3eid")
 type = 2
 display_name = "Strawberry"
-grow_time = 30.0
-heart_reward = 5
-unlock_cost = 150
+grow_time = 25.0
+heart_reward = 10
+unlock_cost = 120
 starts_unlocked = false
 sprite_sprout = ExtResource("3_r6j6r")
 sprite_mature = ExtResource("2_q6gvl")

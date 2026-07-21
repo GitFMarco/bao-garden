@@ -9,7 +9,7 @@
 script = ExtResource("1_l8efd")
 type = 0
 display_name = "Classic"
-grow_time = 10.0
+grow_time = 8.0
 heart_reward = 1
 unlock_cost = 0
 starts_unlocked = true

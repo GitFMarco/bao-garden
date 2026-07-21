@@ -9,9 +9,9 @@
 script = ExtResource("1_bn3k2")
 type = 1
 display_name = "Heart"
-grow_time = 20.0
-heart_reward = 3
-unlock_cost = 50
+grow_time = 15.0
+heart_reward = 4
+unlock_cost = 30
 starts_unlocked = false
 sprite_sprout = ExtResource("3_0p57v")
 sprite_mature = ExtResource("2_kql1j")

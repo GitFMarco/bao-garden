@@ -26,6 +26,13 @@ func _ready() -> void:
 	%CancelResetButton.pressed.connect(%ConfirmModal.hide)
 	%ConfirmResetButton.pressed.connect(_on_reset_confirmed)
 	%ShopButton.pressed.connect(_open_shop)
+	%BackToMenuButton.pressed.connect(_on_back_to_menu)
+	# Slider volume: prima posiziono gli slider sui valori salvati...
+	%MusicSlider.set_value_no_signal(AudioManager.get_music_volume())
+	%SfxSlider.set_value_no_signal(AudioManager.get_sfx_volume())
+	# ...poi li collego: al cambio l'AudioManager applica al bus e salva
+	%MusicSlider.value_changed.connect(AudioManager.set_music_volume)
+	%SfxSlider.value_changed.connect(AudioManager.set_sfx_volume)
 	# Tap sul backdrop -> chiude la finestra
 	for modal in [%MenuModal, %ShopModal, %BackpackModal, %ConfirmModal]:
 		modal.get_node("Backdrop").gui_input.connect(_on_modal_backdrop_input.bind(modal))
@@ -161,6 +168,10 @@ func _on_crop_selected(type: CropData.Type) -> void:
 	
 func _on_reset_confirmed() -> void:
 	GameState.delete_save()
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	
+func _on_back_to_menu() -> void:
+	_save_now()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	
 func _open_shop() -> void:
