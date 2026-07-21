@@ -155,7 +155,7 @@ func _on_crop_selected(type: CropData.Type) -> void:
 	selected_crop = type
 	# Simulo la pressione del bottone dei semi
 	_set_mode(Mode.SEED)
-	%SeedButton.set_pressed_no_signal(true)
+	%SeedButton.set_pressed(true)
 	_update_seed_button()
 	%BackpackModal.hide()
 	
